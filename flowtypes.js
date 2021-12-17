@@ -10,7 +10,6 @@ type config = {
   CONSTANT_TRANSITION_SPEED: boolean,
   LOOP: boolean,
   RELOAD_INTERVAL: number,
-  FINISH_COUNTER: Object,
 };
 
 declare module "finalhandler" {

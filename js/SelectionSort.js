@@ -21,11 +21,8 @@ import { gridDisplay } from "./grid-display/index.js";
 /*::
 type Props = {
   containerId: string,
-  finishCounter: {
-    ALGORITHMS: Array<Object>,
-    COUNT: number
-  },
   fps: string,
+  accelleration: string,
   max_seconds_transition_interval : string,
   cols: string,
   rows: string,
@@ -43,6 +40,7 @@ const SelectionSort /*: function */ = (props /*: Props */) => {
     // Config
     const selectionConf = {
       FPS: parseInt(props.fps) || 10,
+      ACCELLERATION: parseInt(props.accelleration) || 100,
       MAX_SECONDS_TRANSITION_INTERVAL:
         parseInt(props.max_seconds_transition_interval) || 1,
       COLS: parseInt(props.cols) || 4,
@@ -52,15 +50,12 @@ const SelectionSort /*: function */ = (props /*: Props */) => {
       RELOAD_INTERVAL: parseInt(props.reload_interval) | 2000,
       CONSTANT_TRANSITION_SPEED:
         props.constant_transition_speed === "true" || false,
-      FINISH_COUNTER: props.finishCounter,
       CONTAINER_ID: props.containerId,
     };
     // --------------------------------- //
     // SELECTION SORT
     // --------------------------------- //
     const selectionSort = selectionSortFactory(selectionConf, gridDisplay);
-    // I shouldn't, but I am. Adding this algorithm  to the FINISH_COUNTER.ALGORITHMS prop
-    selectionConf.FINISH_COUNTER.ALGORITHMS.push(selectionSort);
     selectionSort.run();
   }, []);
   return html`

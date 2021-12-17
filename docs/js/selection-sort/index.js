@@ -7,7 +7,7 @@ export function selectionSortFactory(
     CONTAINER_ID = "",
     SHOW_WORKING = true,
     FPS = 10,
-    ACCELLERATION = 1,
+    ACCELLERATION = 100,
     CLICK = 1,
     COLS = 5,
     ROWS = 5,

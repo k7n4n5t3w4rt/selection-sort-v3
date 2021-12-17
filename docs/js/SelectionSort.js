@@ -40,7 +40,7 @@ const SelectionSort /*: function */ = (props /*: Props */) => {
     // Config
     const selectionConf = {
       FPS: parseInt(props.fps) || 10,
-      ACCELLERATION: parseInt(props.accelleration) || 1,
+      ACCELLERATION: parseInt(props.accelleration) || 100,
       MAX_SECONDS_TRANSITION_INTERVAL:
         parseInt(props.max_seconds_transition_interval) || 1,
       COLS: parseInt(props.cols) || 4,

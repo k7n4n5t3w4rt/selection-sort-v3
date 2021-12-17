@@ -56,25 +56,26 @@ export function selectionSortFactory(
 
   function loop(a /*: Array<Object> */, i /*: number */) /*: null|void */ {
     // reloadPageIfFinishedLooping(a.length, i)
-    if (config.LOOP && i === a.length) {
+    if (i < a.length) {
+      D.setCellDisplay(
+        i,
+        "add",
+        "active",
+        config.CONTAINER_ID,
+        config.SHOW_WORKING,
+      );
+      findMinIndex(a, i).then((minIndex) => {
+        // If this one is already in the right position
+        // jump to the next cell and return out
+        if (minIndex === i) {
+          skipToNextLoop(a, i, minIndex);
+          return null;
+        }
+        swapAndLoopAgain(a, i, minIndex);
+      });
+    } else if (config.LOOP) {
       return reloadIfFinishedLooping(config.RELOAD_INTERVAL);
     }
-    D.setCellDisplay(
-      i,
-      "add",
-      "active",
-      config.CONTAINER_ID,
-      config.SHOW_WORKING,
-    );
-    findMinIndex(a, i).then((minIndex) => {
-      // If this one is already in the right position
-      // jump to the next cell and return out
-      if (minIndex === i) {
-        skipToNextLoop(a, i, minIndex);
-        return null;
-      }
-      swapAndLoopAgain(a, i, minIndex);
-    });
   }
 
   function setReload(reloadInterval /*: number */) /*: void */ {
